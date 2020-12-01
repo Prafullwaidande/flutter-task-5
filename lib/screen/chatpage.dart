@@ -1,7 +1,7 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Mychatpage extends StatefulWidget {
   @override
   _MychatpageState createState() => _MychatpageState();
@@ -24,9 +24,11 @@ var authc =FirebaseAuth.instance;
    var signInUser = authc.currentUser.email;
    return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.pink[200],
         title: Text('Chat Box'),
          actions: <Widget>[
-           IconButton(icon: Icon(Icons.close), onPressed: () async{
+           CircleAvatar( backgroundImage: NetworkImage('https://firebasestorage.googleapis.com/v0/b/firechat-ee258.appspot.com/o/myimage%2Fmy1234.jpg?alt=media&token=59667cdd-1fc4-4522-bece-2ddc54b1c119'),),
+           IconButton(icon: Icon(Icons.logout), onPressed: () async{
              print(" Sign Off");
              await authc.signOut();
              Navigator.pushNamed(context, "login"); 
@@ -35,7 +37,7 @@ var authc =FirebaseAuth.instance;
       ),
       body:
     Container(
-      
+      color: Colors.blue[200],
       child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -69,6 +71,7 @@ var authc =FirebaseAuth.instance;
              },           
              stream: fs.collection("chat").snapshots(),
              ),
+             
              Row(
                children: [
                  Container(
